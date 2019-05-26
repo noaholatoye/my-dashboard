@@ -7,6 +7,7 @@ body {
 	font-family: "Nunito Sans", sans-serif;
 	width: 100%;
 	margin: 0 auto;
+	position: relative;
 }
 
 .wrapper {
@@ -28,6 +29,15 @@ h4 {
 	color: rgb(63, 63, 63);
 	font-size: 1em;
 	margin-top: 50px;
+}
+ul li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.display-none {
+	display: none;
 }
 
 /* ===============================
@@ -59,8 +69,13 @@ label {
 /* ===============================
   Style Navbar
   ================================== */
-.hide-user-picture,
-.side-navbar {
+.dashboard,
+.setting,
+.visits,
+.members {
+	display: none;
+}
+.hide-user-picture {
 	display: none;
 }
 .topnav {
@@ -69,7 +84,7 @@ label {
 	position: relative;
 }
 
-.topnav #myLinks {
+#myLinks {
 	display: none;
 	background-color: #4d4c72;
 	height: 100vh;
@@ -90,12 +105,15 @@ svg {
 }
 
 .topnav a,
-.active .app-name {
+.app-name {
 	color: white;
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 17px;
 	display: block;
+}
+.app-name {
+	background-color: #7477bf;
 }
 .topnav a.icon {
 	background: #4d4c72;
@@ -110,17 +128,13 @@ svg {
 	color: #fff;
 }
 
-.active {
-	background-color: #7477bf;
-	color: #4d4c72;
-}
-
 .search-section {
 	margin-top: 15px;
 }
 .search-bar {
 	display: flex;
 	justify-content: center;
+	margin-top: 50px;
 }
 .input-search {
 	position: relative;
@@ -290,18 +304,57 @@ svg {
 	}
 }
 
+/* Notification Box */
+.notification-container {
+	position: fixed;
+	top: -0.5em;
+	right: 1.5em;
+	z-index: 200;
+}
+.notification-box {
+	position: absolute;
+	top: 30px;
+	right: -20px;
+	width: 300px;
+	padding: 10px 30px 20px 30px;
+	background-color: #fff;
+	box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.4);
+}
+.notification-wrapper {
+	list-style: none;
+	padding: 30px 0;
+}
+
+.notification-desc {
+	text-align: left;
+	font-size: 1.2em;
+	font-weight: 300;
+	color: #79bb93;
+	margin-bottom: 20px;
+}
+.notification-flex {
+	display: flex;
+}
+.notification-icon {
+	width: 30px;
+	border-radius: 50%;
+	display: block;
+	margin-right: 10px;
+}
+.notification-text {
+	text-align: left;
+	margin-top: 5px;
+}
+
 /* ===============================
   Add sticky navbar
   ================================== */
-#navbar {
-	overflow: hidden;
-	background-color: #333;
-}
-.sticky {
-	position: sticky;
-	top: 0;
+
+.topnav {
+	position: fixed;
+	z-index: 2;
 	width: 100%;
-	z-index: 100;
+	top: 0;
 }
 
 /* ===============================
@@ -335,10 +388,13 @@ svg {
 .switch-toggle {
 	display: flex;
 	margin-bottom: 1em;
+	flex-wrap: wrap;
+	justify-content: center;
 }
-.btn-line {
-	flex-direction: row;
+.switch-toggle .btn-line {
+	font-size: 1em;
 }
+
 .btn label:hover {
 	background-color: #7477bf;
 	color: #fff;
@@ -494,11 +550,11 @@ svg {
 /* ===============================
  Settings
   ================================== */
-.setting {
+.settings {
 	display: flex;
 	margin: 20px 0;
 }
-.setting p {
+.settings p {
 	margin-right: auto;
 	margin-top: 0;
 }
@@ -635,7 +691,7 @@ svg {
 /* ===============================
   Media query @ 768px
   ================================== */
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) {
 	.hide-user-picture,
 	.side-navbar {
 		display: none;
@@ -716,16 +772,14 @@ svg {
   ================================== */
 @media (min-width: 1024px) {
 	/* Navbar */
+	.side-navbar .svg-icon {
+		width: 80px;
+	}
 	.hide-user-picture,
 	.side-navbar {
 		display: block;
 	}
-	.topnav {
-		position: fixed;
-		z-index: 2;
-		width: 100%;
-		top: 0;
-	}
+
 	.side-navbar {
 		height: 100%;
 		width: 70px;
@@ -737,18 +791,25 @@ svg {
 		overflow-x: hidden;
 		padding-top: 70px;
 	}
-	.side-navbar a {
-		margin-left: 10px;
+
+	.dashboard,
+	.members,
+	.visits,
+	.setting {
+		display: block;
+		border-left: 5px solid #4d4c72;
+		padding: 5px 0 5px 0;
+		position: relative;
 		margin-bottom: 20px;
 	}
-	a:hover {
-		border-left: 1px solid #79bb93;
+	.dashboard:hover,
+	.members:hover,
+	.visits:hover,
+	.setting:hover {
+		border-color: #79bb93;
 	}
 	.main-content {
 		margin-left: 7%;
-	}
-	.side-navbar a {
-		display: block;
 	}
 	.hide-fa-bars {
 		display: none;
@@ -761,13 +822,8 @@ svg {
 		padding: 10px 20px;
 		position: relative;
 	}
-	.notification-container,
 	.profile-wrapper {
 		position: absolute;
-	}
-	.notification-container {
-		top: -16%;
-		right: 12%;
 	}
 	.profile-wrapper {
 		top: 15%;
@@ -789,7 +845,10 @@ svg {
 		font-weight: 300;
 		font-size: 0.8em;
 	}
-	/* Search Bar */
+	.notification-container {
+		top: -1em;
+		right: 12em;
+	}
 	h1 {
 		margin: 20px auto 10px 5%;
 	}
@@ -806,6 +865,13 @@ svg {
 		font-size: 1.2em;
 	}
 	/* Charts */
+	.switch-toggle .btn-line {
+		padding: 5px;
+		align-content: stretch;
+	}
+	.switch-toggle {
+		flex-wrap: nowrap;
+	}
 	.line-chart,
 	.doughnut-chart {
 		width: 40%;
@@ -829,6 +895,7 @@ svg {
 		margin-bottom: 2em;
 	}
 	.legend-wrapper {
+		display: block;
 		margin: 4em 0 0 1em;
 	}
 
@@ -845,6 +912,10 @@ svg {
 		margin: 50px 0;
 	}
 
+	.member-name {
+		font-size: 1em;
+	}
+
 	/* Sttings  */
 	.toggle-search-wrapper {
 		display: block;
@@ -852,6 +923,9 @@ svg {
 	.toggle-wrapper,
 	.user-search-wrapper {
 		width: 100%;
+	}
+	.user-search-wrapper {
+		margin-top: 80px;
 	}
 	.new-members,
 	.message-settings {
@@ -865,7 +939,7 @@ svg {
 	#recent__activity,
 	.new-member-wrapper,
 	.message-user,
-	.settings {
+	.setting-wrapper {
 		width: 45%;
 		padding: 15px 0;
 	}
